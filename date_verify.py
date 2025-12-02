@@ -30,7 +30,6 @@ def format(in_date):
         print(f"{month}/{day}/{year}")
         return True
 
-
     else:
         if len(in_date) != 8:
             print("Invalid date length please try again")
