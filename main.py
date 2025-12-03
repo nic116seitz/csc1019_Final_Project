@@ -4,17 +4,7 @@
 # ----------------------------------------
 # Campus Event Planner: Main
 # ----------------------------------------
-import calendar
-
-def most_expensive(events_list):
-    for event in events_list:
-        current_event = events.pop(0)
-        most_expensive = Event("Empty")
-        if event.cost_per > most_expensive.cost_per:
-            most_expensive = event
-    print("The most expensive event is: ",
-          event.name, "Cost:", 
-          (event.cost_per * event.capacity)) # Maybe format this using fstring
+import cal
 
 events = []
 
@@ -31,7 +21,8 @@ def menu(events_list):
               "6) Quit")
         usr_choice = input(" Enter Menu Selection: ")
         if usr_choice == "1":
-            cal_add(events_list)
+         new_event_main = addlocation(dateadd(createnew(events))) 
+         
         elif usr_choice == "2":
             print("This is the View all events function")
             if events_list == []:

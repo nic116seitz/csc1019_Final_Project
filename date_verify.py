@@ -2,11 +2,8 @@
 # CSC1019
 
 # ----------------------------------------
-# Campus Event Planner
+# Campus Event Planner: Calendar Module
 # ----------------------------------------
-
-# !!!!!!! DEBUG Remove Before submit !!!!!
-# These vars should be put in the main program
 event_date = "01011999" 
 current_date = "01011999"
 def past(in_date, ref_date):
