@@ -1,3 +1,9 @@
+# Nicolas Seitz
+# CSC1019
+
+# ----------------------------------------
+# Campus Event Planner
+# ----------------------------------------
 
 # !!!!!!! DEBUG Remove Before submit !!!!!
 # These vars should be put in the main program

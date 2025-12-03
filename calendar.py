@@ -1,4 +1,11 @@
+# Nicolas Seitz
+# CSC1019
+
+# ----------------------------------------
+# Campus Event Planner: Calendar Module
+# ----------------------------------------
 import string
+import date_verify
 class Event:
 
     date = ""

@@ -2,30 +2,10 @@
 # CSC1019
 
 # ----------------------------------------
-# Campus Event Planner
+# Campus Event Planner: Main
 # ----------------------------------------
-import string
-import date_verify
-class Event:
-
-    date = ""
-    location = ""
-    capacity = 0
-    cost_per = 0.0
-    tags = ""
-    description_txt = "No description"
-    
-    def __init__(self, name):
-        self.name = name
-    
-    def event_rev(self):
-        return self.cost_per * self.capacity
-
-    def description(self):
-        print(self.description_txt)
-
-events = []
-
+import calendar
+import 
 def most_expensive(events_list):
     for event in events_list:
         current_event = events.pop(0)
@@ -36,71 +16,6 @@ def most_expensive(events_list):
           event.name, "Cost:", 
           (event.cost_per * event.capacity)) # Maybe format this using fstring
 
-def calendar_sum(events_list):
-    for event in event_list:
-        cal_sum = 0
-        cal_sum += (event.capacity * event.cost_per)
-    print(f"The total sum of all calendar events is: {cal_sum:2f}")
-
-def cal_remove(events_list):
-    print("Would you like to select event(s) by name or date?")
-    target_type = input("Selection: ")
-    if target_type.lower() == "name":
-        target_name = input("Please enter the name of the event you would like to remove: ")
-        for event in events_list.name:
-            pass
-        # make a list of event names => from there use that as the the input for the pop method
-    elif target_type.lower() == "date":
-        target_date_raw = input("Please enter the date of the event you would like to remove: ")
-        target_date = "".join(char for char in target_date_raw if char not in string.punctuation)
-
-# A function to allow users to edit each of the events on the events list
-def cal_edit(events_list):
-    pass
-
-# Consider breaking this out into a seperate mod maybe break up all of the cal functions into a seperate module
-def cal_add(events_list):
-    new_event_raw = input("Enter the name for your event(type in cancel to exit): ")
-    if new_event_raw.lower() == "cancel":
-        return print("\nreturning to menu.....")
-    else:
-        new_event = Event(new_event_raw)
-        new_event_date_raw = input("Enter the date of the event you are adding seperated by punctuation(to exit type in cancel): ")
-        if new_event_date_raw.lower() == "cancel":
-            return print("\nreturning to menu.....")
-        else:
-            # Loop in the date verification here
-            new_event.date = "".join(char for char in new_event_date_raw if 
-                char not in string.punctuation)
-            new_event_loc_raw = input("Enter the location for your event: ")
-            # Debug Remove
-            print(type(new_event_loc_raw))
-            if new_event_loc_raw == "cancel":
-                return print("\nreturning to menu.....")
-            else:
-                try:
-                    new_event_low = new_event_loc_raw.lower()
-                    new_event1 = new_event_low.split(0)
-                    new_event2 = new_event_loc_raw.split(-(len(new_event_loc_raw) - 1))
-                    # Debug remove before submit
-                    new_event.location = new_event1 + new_event2 
-                    print(new_event.location)
-                    new_event_cap_raw = input("Please enter the capacity of your location (type cancel to exit): ")
-                    if new_event_cap_raw == "cancel":
-                        return print("\nreturning to menu.....")
-                    else:
-                        new_event.cap = int(new_event_cap_raw)
-                        try:
-                            new_event_price = int(input("Enter the cost per person for your event(type any letters to exit): "))
-                            if new_event_price_raw == "cancel":
-                                return print("\nReturning to menu >>>>>>")
-                            else:
-                                new_event_price
-                        except ValueError:
-                            print("The number you have entered is invalid please try again")
-                except ValueError:
-                    print("The number you have entered is invalid please try again")
-    print(events)
 
 def menu(events_list):
     while True:
