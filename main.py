@@ -74,16 +74,24 @@ def cal_add(events_list):
             if new_event_loc_raw == "cancel":
                 break
             else:
-                new_event.location = (new_event_loc_raw.lowercase()).uppercase([0])
                 try:
+                    new_event.location = (new_event_loc_raw.lowercase()).uppercase([0])
                     new_event_cap_raw = input("Please enter the capacity of your location (type cancel to exit): ")
                     if new_event_cap_raw == "cancel":
+                        print("\nReturning to menu >>>>>>")
                         break
                     else:
-                        new_event_cap = int(new_event_cap_raw)
+                        new_event.cap = int(new_event_cap_raw)
+                        try:
+                            new_event_price = int(input("Enter the cost per person for your event(type any letters to exit): "))
+                            if new_event_price_raw == "cancel":
+                                print("\nReturning to menu >>>>>>")
+                            else:
+                                new_event_price
+                        except ValueError:
+                            print("The number you have entered is invalid please try again")
                 except ValueError:
-                    print("The value you have entered ins not a number please try again")
-            events_list += new_event
+                    print("The number you have entered is invalid please try again")
     print(events)
 
 def menu(events_list):
