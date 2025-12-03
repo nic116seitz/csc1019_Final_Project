@@ -21,8 +21,7 @@ def menu(events_list):
               "6) Quit")
         usr_choice = input(" Enter Menu Selection: ")
         if usr_choice == "1":
-         new_event_main = addlocation(dateadd(createnew(events))) 
-         
+         createnew(events)          
         elif usr_choice == "2":
             print("This is the View all events function")
             if events_list == []:
