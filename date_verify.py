@@ -1,7 +1,8 @@
 
 # !!!!!!! DEBUG Remove Before submit !!!!!
-event_date = "12321997" 
-current_date = "12142025"
+# These vars should be put in the main program
+event_date = "01011999" 
+current_date = "01011999"
 def past(in_date, ref_date):
     print("This is the past event function")
     pass
@@ -45,11 +46,5 @@ def format(in_date):
 def isleapyear(in_date):
     pass
 
-format(current_date)
-if format(event_date) == True:
-    print("Date is valid")
-    past(event_date, current_date)
-else:
-    pass
 
      

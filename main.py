@@ -58,34 +58,42 @@ def cal_remove(events_list):
 def cal_edit(events_list):
     pass
 
+# Consider breaking this out into a seperate mod maybe break up all of the cal functions into a seperate module
 def cal_add(events_list):
     new_event_raw = input("Enter the name for your event(type in cancel to exit): ")
-    if new_event_raw.lowercase() == "cancel":
-        break
+    if new_event_raw.lower() == "cancel":
+        return print("\nreturning to menu.....")
     else:
         new_event = Event(new_event_raw)
         new_event_date_raw = input("Enter the date of the event you are adding seperated by punctuation(to exit type in cancel): ")
-        if new_event_date_raw.lowercase() == "cancel":
-            break
+        if new_event_date_raw.lower() == "cancel":
+            return print("\nreturning to menu.....")
         else:
+            # Loop in the date verification here
             new_event.date = "".join(char for char in new_event_date_raw if 
                 char not in string.punctuation)
-            new_event_loc_raw = input("Enter the location for your event")
+            new_event_loc_raw = input("Enter the location for your event: ")
+            # Debug Remove
+            print(type(new_event_loc_raw))
             if new_event_loc_raw == "cancel":
-                break
+                return print("\nreturning to menu.....")
             else:
                 try:
-                    new_event.location = (new_event_loc_raw.lowercase()).uppercase([0])
+                    new_event_low = new_event_loc_raw.lower()
+                    new_event1 = new_event_low.split(0)
+                    new_event2 = new_event_loc_raw.split(-(len(new_event_loc_raw) - 1))
+                    # Debug remove before submit
+                    new_event.location = new_event1 + new_event2 
+                    print(new_event.location)
                     new_event_cap_raw = input("Please enter the capacity of your location (type cancel to exit): ")
                     if new_event_cap_raw == "cancel":
-                        print("\nReturning to menu >>>>>>")
-                        break
+                        return print("\nreturning to menu.....")
                     else:
                         new_event.cap = int(new_event_cap_raw)
                         try:
                             new_event_price = int(input("Enter the cost per person for your event(type any letters to exit): "))
                             if new_event_price_raw == "cancel":
-                                print("\nReturning to menu >>>>>>")
+                                return print("\nReturning to menu >>>>>>")
                             else:
                                 new_event_price
                         except ValueError:
@@ -134,5 +142,10 @@ def menu(events_list):
             exit()
         else:
             print("Invalid input! Please, try again!")
-
+# This is for date verification down the line
+    # if format(event_date) == True:
+    #     print("Date is valid")
+    #     past(event_date, current_date)
+    # else:
+    #     pass
 menu(events)
