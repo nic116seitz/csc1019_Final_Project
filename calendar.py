@@ -78,7 +78,29 @@ def addprice(event):
                 new_event_price = float(new_event_price_raw)
         except ValueError:
             print("The number you have entered is invalid please try again")
+
+def sum(events_list):
+    for event in event_list:
+        sum = 0
+        sum += (event.capacity * event.cost_per)
+    print(f"The total sum of all calendar events is: {sum:2f}")
+    return sum
                 
+def remove(events_list):
+    print("Would you like to select event(s) by name or date?")
+    target_type = input("Selection: ")
+    if target_type.lower() == "name":
+        target_name = input("Please enter the name of the event you would like to remove: ")
+        for event in events_list.name:
+            pass
+        # make a list of event names => from there use that as the the input for the pop method
+    elif target_type.lower() == "date":
+        target_date_raw = input("Please enter the date of the event you would like to remove: ")
+        target_date = "".join(char for char in target_date_raw if char not in string.punctuation)
+
+def edit(events_list):
+    pass
+    
 created_event = createnew(events)
 dateadd(created_event)
 addlocation(created_event)
@@ -87,5 +109,5 @@ addprice(created_event)
 
 # Debugs put using method calls put this in the main program
 
-print(events)
+print()
 
