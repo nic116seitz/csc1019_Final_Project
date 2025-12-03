@@ -5,7 +5,7 @@
 # Campus Event Planner: Main
 # ----------------------------------------
 import calendar
-import 
+
 def most_expensive(events_list):
     for event in events_list:
         current_event = events.pop(0)
@@ -16,6 +16,7 @@ def most_expensive(events_list):
           event.name, "Cost:", 
           (event.cost_per * event.capacity)) # Maybe format this using fstring
 
+events = []
 
 def menu(events_list):
     while True:

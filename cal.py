@@ -24,7 +24,6 @@ class Event:
     def description(self):
         print(self.description_txt)
 
-events = []
 
 def createnew(event_list):
     new_event_raw = input("Enter the name for your event(type in cancel to exit): ")
