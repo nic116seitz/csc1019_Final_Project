@@ -12,8 +12,8 @@ def past(in_date, ref_date):
     
 def format(in_date):
     month = int(in_date) % 100000000 // 1000000
-    year = int(in_date) % 10000
     day = int(in_date) % 1000000 // 10000
+    format_year = int(in_date) % 10000
     if (month == 3 and 
         day > 30 or month == 4 and 
         day > 30 or month == 6 and 
@@ -29,9 +29,9 @@ def format(in_date):
           day > 31 or month == 12 and 
           day > 31):
             print("The day you have selected does not exist for the month you have entered")
-    elif month > 0 and year > 1000 and day > 0 and len(in_date) == 8:
+    elif month > 0 and format_year > 1000 and day > 0 and len(in_date) == 8:
         print(in_date)
-        print(f"{month}/{day}/{year}")
+        print(f"{month}/{day}/{format_year}")
         return True
 
     else:
@@ -41,13 +41,14 @@ def format(in_date):
             print("Invalid month please try again")
         elif day == 0:
             print("Invalid day please try again")
-        elif year == 0 or year < 1000:
+        elif format_year == 0 or format_year < 1000:
             print("Invalid year please try again")
         return False
 
 
 def isleapyear(in_date):
-    pass
+    format_year = int(in_date) % 10000
+    
 
 
      
