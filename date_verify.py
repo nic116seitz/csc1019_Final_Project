@@ -2,24 +2,28 @@
 # CSC1019
 
 # ----------------------------------------
-# Campus Event Planner: Calendar Module
+# Campus Event Planner: Date Verification Module
 # ----------------------------------------
-event_date = "01011999" 
-current_date = "01011999"
-def past(in_date, ref_date):
-    print("This is the past event function")
-    pass
-    
-def format(in_date):
-    month = int(in_date) % 100000000 // 1000000
-    day = int(in_date) % 1000000 // 10000
-    format_year = int(in_date) % 10000
+test_event = "12311999" 
+def leap_check(event_date):
+    leap_year = int(event_date) % 10000
+    if leap_year % 100 == 0 and leap_year % 400 != 0:
+        return False
+    elif leap_year % 4 == 0:
+        return True
+    elif leap_year % 4 != 0:
+        return False
+   
+def date_format(event_date):
+    month = int(event_date) % 100000000 // 1000000
+    day = int(event_date) % 1000000 // 10000
+    format_year = int(event_date) % 10000
     if (month == 3 and 
         day > 30 or month == 4 and 
         day > 30 or month == 6 and 
         day > 30 or month == 11 and 
         day > 30):
-            print("The day you have selected does not exist for the month you have entered 30")
+            return False
     elif (month == 1 and 
           day > 31 or month == 3 and 
           day > 31 or month == 5 and 
@@ -28,27 +32,26 @@ def format(in_date):
           day > 31 or month == 10 and 
           day > 31 or month == 12 and 
           day > 31):
-            print("The day you have selected does not exist for the month you have entered")
-    elif month > 0 and format_year > 1000 and day > 0 and len(in_date) == 8:
-        print(in_date)
-        print(f"{month}/{day}/{format_year}")
-        return True
-
-    else:
-        if len(in_date) != 8:
-            print("Invalid date length please try again")
-        elif month == 0 or month > 12:
-            print("Invalid month please try again")
-        elif day == 0:
-            print("Invalid day please try again")
-        elif format_year == 0 or format_year < 1000:
-            print("Invalid year please try again")
+            return False
+    elif leap_check(event_date) == False and day == 2 and month > 28:
         return False
+    elif month > 0 and format_year > 1000 and day > 0 and len(event_date) == 8:
+        return True
+    else:
+        print("Unexpected Error")
+        return False
+#         if len(event_date) != 8 or event_date != "1":
+#              print("Invalid date length please try again")
+#         elif month < 1 or month > 12:
+#             print("Invalid month please try again")
+#         elif day == 0:
+#             print("Invalid day please try again")
+#         elif format_year == 0 or format_year < 1000:
+#             print("Invalid year please try again")
+#         return False
+ # test statement
+if date_format(test_event) == True:
+    print("Test passed!")
+else:
+    print("Failed")
 
-
-def isleapyear(in_date):
-    format_year = int(in_date) % 10000
-    
-
-
-     

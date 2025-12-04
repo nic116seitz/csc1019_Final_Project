@@ -2,7 +2,7 @@
 # CSC1019
 
 # ----------------------------------------
-# Campus Event Planner: Statistics
+# Campus Event Planner: Statistics Module
 # ----------------------------------------
 import main
 events = main.events
