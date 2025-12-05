@@ -4,11 +4,12 @@
 # ----------------------------------------
 # Campus Event Planner: Main
 # ----------------------------------------
+# Imports for the program, the include cal module and the caladd module
 import cal
 import caladd
-
+# This is the list where the event objects will be stored
 events = []
-
+# This is the menu function
 def menu(events_list):
     while True:
         print("*******************\n",

@@ -6,6 +6,7 @@
 # ----------------------------------------
 # The calendar module has the following imports string, to call string.punctuation
 import string
+import date_verify
 # This is the remove event function
 def remove(events_list, targ_name):
     # This iterates over each of the events in the given events_list

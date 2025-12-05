@@ -20,3 +20,8 @@ def mostexpensive(events_list):
 def average(events_list):
     pass
  
+def leastexpensive(events_list):
+    pass
+
+def medianprice(events_list):
+    pass
