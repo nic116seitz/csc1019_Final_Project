@@ -1,0 +1,7 @@
+event
+12/31/1999
+palladium
+123
+12
+This is a description
+tag1.tag2. tag3
