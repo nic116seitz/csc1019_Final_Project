@@ -25,34 +25,26 @@ class Event:
     def description(self):
         return self.description_txt
 
-events = []
+# Test_array for debugging caladd module
+test = []
 
 def dateadd(event):
     while event.date == "1":
         verify_loop = True
         # try:
-        new_event_date_raw = input("Enter the date of the event you are adding seperated by punctuation(to exit type in cancel): ")
+        new_event_date_raw = input("Enter the date of the event you are adding seperated by punctuation"+
+            "(to cancel type in cancel): ")
         if new_event_date_raw.lower() == "cancel":
             return print("\nreturning to menu.....")
         else:
             date_temp = "".join(char for char in new_event_date_raw if 
                             char not in string.punctuation)
             if date_verify.date_format(date_temp) == False:
-                print("The date you have selected does not exist please check date")
+                print("The date you have selected does not exist please check date or the format for your date is wrong.")
             else:
                 event.date = date_temp                     
                 verify_loop = False
                 return event.date
-                    # if len(event_date) != 8 or event_date != "1":
-                    #     print("Invalid date length please try again")
-                    # elif date_verify.month < 1 or date_verify.month > 12:
-                    #     print("Invalid month please try again")
-                    # elif day == 0:
-                    #     print("Invalid day please try again")
-                    # elif format_year == 0 or format_year < 1000:
-                    #     print("Invalid year please try again")
-
-                    
         # except AttributeError:
         #     print("AttributeError: Invalid entry please try again!!")
 
@@ -121,5 +113,19 @@ def createnew(event_list):
             addscript(new_event)
             addtags(new_event)
             event_list.append(new_event)
- 
-createnew(events)
+
+# Test function call and print for debugging the caladd module 
+createnew(test)
+print("New Event Created!")
+print("*******\n")
+print(f"Name: {test.name}")
+print(f"Location: {test.location}")
+print(f"Date: {test.date}")
+print(f"Capacity: {test.cap}")
+print(f"Cost per person: {test.cost_per}")
+print(f"Tags: {test.tags}")
+print(f"Description: {test.description()}")
+print(f"Projected Revenue: {test.event_rev()}")
+print("*******")
+
+

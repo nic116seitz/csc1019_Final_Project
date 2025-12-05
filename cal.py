@@ -4,13 +4,16 @@
 # ----------------------------------------
 # Campus Event Planner: Calendar Module
 # ----------------------------------------
+# The calendar module has the following imports string, to call string.punctuation
 import string
-import main
-
-def remove(events_list, search_name):
+# This is the remove event function
+def remove(events_list, targ_name):
+    # This iterates over each of the events in the given events_list
     for event in events_list:
-        if event.name == search_name:
-            events_list.remove(search_name)
+        if targ_name in event.name:
+            print("")
+            print(event.name)
+            events_list.remove(targ_name)
         else:
             print("Event not found please try again!!")
 
@@ -26,7 +29,6 @@ def edit(events_list):
             edit_loop = False
         else:
             print("Invalid entry please try again!")
-
     field_loop == True
     while field_loop == True:
         try:
@@ -55,28 +57,44 @@ def edit(events_list):
                 addtags(edit_target)
                 field_loop = False
             elif field_target == 3:
-                cal.addcript(edit_target)
+                cal.addscript(edit_target)
                 field_loop = False
             elif field_target == 2:
                 print("\n Returning to menu....")
                 field_loop = False
+                # Possible failcheck functionality that I have to figure out a way to loop in
+                    # if len(event_date) != 8 or event_date != "1":
+                    #     print("Invalid date length please try again")
+                    # elif date_verify.month < 1 or date_verify.month > 12:
+                    #     print("Invalid month please try again")
+                    # elif day == 0:
+                    #     print("Invalid day please try again")
+                    # elif format_year == 0 or format_year < 1000:
+                    #     print("Invalid year please try again")
         except ValueError:
             print("Your entry was non numerical please try again")
-
 
 def listall(event_list):
     if events_list == []:
         print("You currently have no events in your calendar")
     else:
         for event in enumerate(event_list, start=1):
-            print("*******\n")
-            print(f"Name: {event.name}")
-            print(f"Date: {event.date}")
-            print(f"Cost per person: {event.cost_per}")
-            print(f"Date: {event.capacity}")
-            print(f"Date: {event.location}")
-            print(f"")
-            print("*******")
-                 
+           print(event) 
 
+def search(event_list):
+    print("This is the search method of the cal module ... ")
+    pass
+
+# Given extra time format these strings
+def print(event):                 
+    print("New Event Created!")
+    print("*******\n")
+    print(f"Name: {event.caladd.date}")
+    print(f"Date: {event.caladd.location}")
+    print(f"Capacity: {event.caladd.cap}")
+    print(f"Cost per person: {event.caladd.cost_per}")
+    print(f"Tags: {event.caladd.tags}")
+    print(f"Description: {event.caladd.description()}")
+    print(f"Description: {event.caladd.event_rev()}")
+    print("*******")
 

@@ -4,7 +4,7 @@
 # ----------------------------------------
 # Campus Event Planner: Date Verification Module
 # ----------------------------------------
-test_event = "12311999" 
+# test_event = "03301999" 
 def leap_check(event_date):
     leap_year = int(event_date) % 10000
     if leap_year % 100 == 0 and leap_year % 400 != 0:
@@ -50,8 +50,8 @@ def date_format(event_date):
 #             print("Invalid year please try again")
 #         return False
  # test statement
-if date_format(test_event) == True:
-    print("Test passed!")
-else:
-    print("Failed")
+# if date_format(test_event) == True:
+#     print("Test passed!")
+# else:
+#     print("Failed")
 
