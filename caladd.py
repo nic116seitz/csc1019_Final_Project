@@ -7,7 +7,8 @@
 # Imports for the caladd which are string for punctuation verification
 # date_verify for date verification
 import string
-import date_verify
+from date_verify import *
+# from stats import *
 
 # Class definition for Event
 class Event:
@@ -31,7 +32,7 @@ class Event:
         return self.description_txt
 
 # Test_array for debugging caladd module
-# test = []
+test = []
 
 # This is the function that adds date to the event 
 def dateadd(event):
@@ -53,10 +54,10 @@ def dateadd(event):
             date_temp = "".join(char for char in new_event_date_raw if 
                             char not in string.punctuation)
             # This is for deferring the printing of the error message to the date_verify to the date_verify function see line 53 in date_verify
-            if False in date_verify.date_format(date_temp) and "Value Error" in date_verify.date_format(date_temp):
+            if date_format(date_temp) == False:
                 pass
             # This looks for the False bool in the return statement of the date_temp if it returns false it prints the error message below
-            elif False in date_verify.date_format(date_temp):
+            elif date_format(date_temp) == False:
                 print("The date you have selected does not exist please check date or the format for your date is wrong.")
             # If the date_temp passes all the previous checks then the event is overwritten thus breking the loop
             # Another way to do this would be to use False as the place holder value event.date
@@ -73,7 +74,7 @@ def addlocation(event):
         # The function then prompts the user to input the location for the event
         # if it is equal to cancel then the function will print the returning to menu statement
         # otherwise it will process the string by converting it to upper case if the length of the event name is 1
-        new_event_loc_raw = input("Enter the location for your event(enter cancel to exit): ").lowercase()
+        new_event_loc_raw = input("Enter the location for your event(enter cancel to exit): ").lower()
         if new_event_loc_raw == "cancel":
             location_loop = False
             return print("\nreturning to menu.....")
@@ -139,14 +140,26 @@ def addprice(event):
             # If the event price passes all previous checks then the input is bound to to the attribute cost_per 
             else:
                 event.cost_per = float(new_event_price_raw)
+                price_loop = False
         except ValueError:
             print("The number you have entered is invalid please try again")
 
 # Takes input and converts it to tags for the given event
-# Removes spaces and puntuation and joins together the tags with a comma space seperation  
+# Removes spaces and puntuation and converts tags to an array of tags  
 def addtags(event):
-    event.tags = ", ".join(char.strip() for char in input("Enter tags seperated by punctuation: ") if 
-        char not in string.punctuation)
+    add_tags_loop = True
+    while add_tags_loop == True:
+        event_tags_raw = input("Enter the tags seperated by commas(cancel to exit): ").lower()
+        if event_tags_raw == "cancel":
+            return print("\nreturning to menu.....")
+        else:
+            for ch in string.punctuation:
+                if ch in event_tags_raw and ch != ",":
+                    print("Invalid punctuation detected")
+                else:
+                    add_tags_loop = False
+                    event.tags = event_tags_raw.split(",")
+    
 
 # Add description function
 # prompts the user for input for their desired description text then binds it to the object attribute description_txt
@@ -185,19 +198,20 @@ def createnew(event_list):
             event_list.append(new_event)
             create_loop = False
 
+
 # Test function call and print for debugging the caladd module 
-# createnew(test)
-# test_event = test[0]
-# print("New Event Created!")
-# print("*******\n")
-# print(f"Name: {test_event.name}")
-# print(f"Location: {test_event.location}")
-# print(f"Date: {test_event.date}")
-# print(f"Capacity: {test_event.cap}")
-# print(f"Cost per person: {test_event.cost_per}")
-# print(f"Tags: {test_event.tags}")
-# print(f"Description: {test_event.description()}")
-# print(f"Projected Revenue: {test_event.event_rev()}")
-# print("*******")
+createnew(test)
+test_event = test[0]
+print("New Event Created!")
+print("*******\n")
+print(f"Name: {test_event.name}")
+print(f"Location: {test_event.location}")
+print(f"Date: {test_event.date}")
+print(f"Capacity: {test_event.cap}")
+print(f"Cost per person: {test_event.cost_per}")
+print(f"Tags: {test_event.tags}")
+print(f"Description: {test_event.description()}")
+print(f"Projected Revenue: {test_event.event_rev()}")
+print("*******")
 
 
