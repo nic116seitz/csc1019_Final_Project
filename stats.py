@@ -4,7 +4,6 @@
 # ----------------------------------------
 # Campus Event Planner: Statistics Module
 # ----------------------------------------
-# For debug make sure to delete before finalization
 # from caladd import Event
 # import random
 # event_inc = 1
@@ -72,8 +71,8 @@ def highestrev(events_list):
             highest_rev = current_highest_rev
     return highest_rev
 # These are debug print statements to test that all the functions work
-print(f"most expensive: {mostexpensive(test)}")
-print(f"cheapest: {cheapest(test)}")
-print(f"average rev: {averagerev(test):.2f}")
-print(f"least rev: {leastrev(test):.2f}")
-print(f"highest rev: {highestrev(test):.2f}")
+# print(f"most expensive: {mostexpensive(test)}")
+# print(f"cheapest: {cheapest(test)}")
+# print(f"average rev: {averagerev(test):.2f}")
+# print(f"least rev: {leastrev(test):.2f}")
+# print(f"highest rev: {highestrev(test):.2f}")

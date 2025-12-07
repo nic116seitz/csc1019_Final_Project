@@ -4,13 +4,9 @@
 # ----------------------------------------
 # Campus Event Planner: Calendar Add Functions
 # ----------------------------------------
-# Imports for the caladd which are string for punctuation verification
-# date_verify for date verification
+# Class definition for event objects
 import string
 from date_verify import *
-# from stats import *
-
-# Class definition for Event
 class Event:
     # Each event object must have date, location, cap, cost_per, tags, and description text
     # Negative values were selected as the 
@@ -18,7 +14,7 @@ class Event:
     location = ""
     cap = 0
     cost_per = 0
-    tags = ""
+    tags = []
     description_txt = "No description"
     # This is the __init__ for the class Event objects
     def __init__(self, name):
@@ -32,7 +28,7 @@ class Event:
         return self.description_txt
 
 # Test_array for debugging caladd module
-test = []
+# test = []
 
 # This is the function that adds date to the event 
 def dateadd(event):
@@ -53,12 +49,9 @@ def dateadd(event):
             # The function takes the raw date and removes the punctuation turning it into a string of num
             date_temp = "".join(char for char in new_event_date_raw if 
                             char not in string.punctuation)
-            # This is for deferring the printing of the error message to the date_verify to the date_verify function see line 53 in date_verify
-            if date_format(date_temp) == False:
-                pass
             # This looks for the False bool in the return statement of the date_temp if it returns false it prints the error message below
-            elif date_format(date_temp) == False:
-                print("The date you have selected does not exist please check date or the format for your date is wrong.")
+            if date_format(date_temp) == False:
+                print("Invalid date")
             # If the date_temp passes all the previous checks then the event is overwritten thus breking the loop
             # Another way to do this would be to use False as the place holder value event.date
             else:
@@ -145,14 +138,19 @@ def addprice(event):
             print("The number you have entered is invalid please try again")
 
 # Takes input and converts it to tags for the given event
-# Removes spaces and puntuation and converts tags to an array of tags  
 def addtags(event):
     add_tags_loop = True
     while add_tags_loop == True:
         event_tags_raw = input("Enter the tags seperated by commas(cancel to exit): ").lower()
         if event_tags_raw == "cancel":
             return print("\nreturning to menu.....")
+        elif "," not in event_tags_raw:
+            add_tags_loop = False
+            event.tags = event_tags_raw
+        elif event_tags_raw == "":
+            break
         else:
+            # This part checks over to see if the punctuation is not , if  it is it will throw an error 
             for ch in string.punctuation:
                 if ch in event_tags_raw and ch != ",":
                     print("Invalid punctuation detected")
@@ -160,7 +158,6 @@ def addtags(event):
                     add_tags_loop = False
                     event.tags = event_tags_raw.split(",")
     
-
 # Add description function
 # prompts the user for input for their desired description text then binds it to the object attribute description_txt
 def addscript(event):
@@ -185,10 +182,12 @@ def createnew(event_list):
         # it then calls the other functions in order to reassign the attributes for the event
         # it then takes the input event_list array and appends it with the event
         else:
+            # the new_event_name vars are used to create a name that has the first letter capitalized while the other letters remain un capitalized
             new_event_name1 = new_event_raw[0].upper()
             new_event_name2 = new_event_raw[1:].lower()
             new_event_name = new_event_name1 + new_event_name2
             new_event = Event(new_event_name)
+            # This calls the other functions to edit the attributes of the event
             dateadd(new_event)
             addlocation(new_event)
             addcap(new_event)
@@ -196,22 +195,34 @@ def createnew(event_list):
             addscript(new_event)
             addtags(new_event)
             event_list.append(new_event)
+            # These print the various attributes for the event
+            print("New Event Created!")
+            print("*******\n")
+            print(f"Name: {new_event.name}")
+            print(f"Location: {new_event.location}")
+            print(f"Date: {new_event.date}")
+            print(f"Capacity: {new_event.cap}")
+            print(f"Cost per person: {new_event.cost_per}")
+            print(f"Tags: {new_event.tags}")
+            # Thse call the class methods
+            print(f"Description: {new_event.description()}")
+            print(f"Projected Revenue: {new_event.event_rev()}")
+            print("*******")
             create_loop = False
 
-
 # Test function call and print for debugging the caladd module 
-createnew(test)
-test_event = test[0]
-print("New Event Created!")
-print("*******\n")
-print(f"Name: {test_event.name}")
-print(f"Location: {test_event.location}")
-print(f"Date: {test_event.date}")
-print(f"Capacity: {test_event.cap}")
-print(f"Cost per person: {test_event.cost_per}")
-print(f"Tags: {test_event.tags}")
-print(f"Description: {test_event.description()}")
-print(f"Projected Revenue: {test_event.event_rev()}")
-print("*******")
+# createnew(test)
+# test_event = test[0]
+# print("New Event Created!")
+# print("*******\n")
+# print(f"Name: {test_event.name}")
+# print(f"Location: {test_event.location}")
+# print(f"Date: {test_event.date}")
+# print(f"Capacity: {test_event.cap}")
+# print(f"Cost per person: {test_event.cost_per}")
+# print(f"Tags: {test_event.tags}")
+# print(f"Description: {test_event.description()}")
+# print(f"Projected Revenue: {test_event.event_rev()}")
+# print("*******")
 
 

@@ -4,9 +4,9 @@
 # ----------------------------------------
 # Campus Event Planner: Calendar Module
 # ----------------------------------------
-# The calendar module has the following imports string, to call string.punctuation
-import string
-import date_verify
+from caladd import *
+from stats import *
+events = []
 # This is the remove event function
 def remove(events_list, targ_name):
     # This iterates over each of the events in the given events_list
@@ -17,10 +17,6 @@ def remove(events_list, targ_name):
             events_list.remove(targ_name)
         else:
             print("Event not found please try again!!")
-
-def addtags(event):
-    event.tags = "".join(char for char in input("Enter tags seperated by punctuation: ") if 
-        char not in string.punctuation)
 
 def edit(events_list):
     edit_loop = True
@@ -44,7 +40,7 @@ def edit(events_list):
             if field_target == 1:
                 edit_target_rename == (input("Enter the new name you would like to put for the event: ")).lower()
                 if edit_target_rename == "cancel":
-                    pass
+                   pass
                 else: 
                     edit_target.name = edit_target_rename
                     field_loop = False
@@ -54,24 +50,15 @@ def edit(events_list):
             elif field_target == 3:
                 addlocation(edit_target)
                 field_loop = False
-            elif field_target == 2:
+            elif field_target == 4:
                 addtags(edit_target)
                 field_loop = False
-            elif field_target == 3:
-                cal.addscript(edit_target)
+            elif field_target == 5:
+                addscript(edit_target)
                 field_loop = False
-            elif field_target == 2:
+            elif field_target == 6:
                 print("\n Returning to menu....")
-                field_loop = False
-                # Possible failcheck functionality that I have to figure out a way to loop in
-                    # if len(event_date) != 8 or event_date != "1":
-                    #     print("Invalid date length please try again")
-                    # elif date_verify.month < 1 or date_verify.month > 12:
-                    #     print("Invalid month please try again")
-                    # elif day == 0:
-                    #     print("Invalid day please try again")
-                    # elif format_year == 0 or format_year < 1000:
-                    #     print("Invalid year please try again")
+                menu_loop = False
         except ValueError:
             print("Your entry was non numerical please try again")
 
@@ -80,22 +67,73 @@ def listall(event_list):
         print("You currently have no events in your calendar")
     else:
         for event in enumerate(event_list, start=1):
-           print(event) 
-
-def search(event_list):
-    print("This is the search method of the cal module ... ")
-    pass
-
-# Given extra time format these strings
-def print(event):                 
-    print("New Event Created!")
+            eventprint(event)
+            
+def search(event_list, query):
+    event_names = []
+    for event in event_list:
+        if query in event.name or query in event:
+            event_names += event 
+            print(event_names)
+    for event in event_names:
+        if event_name in enumerate(event_list, start= 1):
+            eventprint(event)
+        
+def eventprint(event):
     print("*******\n")
-    print(f"Name: {event.caladd.date}")
-    print(f"Date: {event.caladd.location}")
-    print(f"Capacity: {event.caladd.cap}")
-    print(f"Cost per person: {event.caladd.cost_per}")
-    print(f"Tags: {event.caladd.tags}")
-    print(f"Description: {event.caladd.description()}")
-    print(f"Description: {event.caladd.event_rev()}")
+    print(f"Name: {event.name}")
+    print(f"Date: {event.date}")
+    print(f"Date: {event.location}")
+    print(f"Capacity: {event.cap}")
+    print(f"Cost per person: {event.cost_per}")
+    print(f"Tags: {event.tags}")
+    print(f"Description: {event.description_txt}")
+    print(f"Projected revenue: {event.event_rev()}")
     print("*******")
+
+# Caller function to print stats
+def printstats(event_list):
+    print(f"most expensive: {mostexpensive(event_list)}")
+    print(f"cheapest: {cheapest(event_list)}")
+    print(f"average rev: {averagerev(event_list):.2f}")
+    print(f"least rev: {leastrev(event_list):.2f}")
+    print(f"highest rev: {highestrev(event_list):.2f}")
+# This is the menu function
+def menu(events_list):
+    # Loop condition var
+    menu_loop = True
+    # While loop to show the main menu,
+    # an alt method to do this would be to construct an array of options and then enumerate said array
+    # then create a for loop that will print the array
+    while menu_loop == True:
+        print("*******************\n",
+              "Main Menu\n",
+              "*******************\n",
+              "1) Add New Event\n",
+              "2) View all Events\n",
+              "3) Search For Events\n",
+              "4) Remove Events\n",
+              "5) Event Calendar Summary\n",
+              "6) Quit")
+        # Prompts user to make a selection from the given menu
+        usr_choice = input(" Enter Menu Selection: ")
+        # Triggers the create new event function see caladd module (line 174)
+        if usr_choice == "1":
+            new_event = createnew(events)
+            eventprint(new_event)
+        elif usr_choice == "2":
+            listall(events)
+        elif usr_choice == "3":
+            print("This is the search events function")
+        elif usr_choice == "4":
+            remove(events)
+        elif usr_choice == "5":
+            printstats(events_list)
+        elif usr_choice == "6":
+            print("Goodbye :)")
+            menu_loop = False
+        else:
+            print("Invalid input! Please, try again!")
+menu(events)
+
 

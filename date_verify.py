@@ -52,11 +52,11 @@ def date_format(event_date):
                 print("Invalid Day: The month you have input only has 31 days")
                 return False
         # if statement to check if the input is greater than 28 on an non leap year
-        elif leap_check(event_date) == False and day == 2 and month > 28:
+        elif leap_check(event_date) == False and month == 2 and day > 28:
             print("Invalid Day: The month you have input only has 28 days")
             return False
         # if statement to check if the input is greater than 29 on a leap year
-        elif leap_check(event_date) == True and day == 2 and month > 29:
+        elif leap_check(event_date) == True and month == 2 and day > 29:
             print("Invalid Day: The month you have input only has 29 days")
             return False
         # Date verification returns a true if the month and day are greater then 0 the input equals 8

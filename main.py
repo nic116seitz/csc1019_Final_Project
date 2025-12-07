@@ -4,14 +4,17 @@
 # ----------------------------------------
 # Campus Event Planner: Main
 # ----------------------------------------
-# Imports for the program, the include cal module and the caladd module
-import cal
-import caladd
+# Imports all contents of the cal module into main
 # This is the list where the event objects will be stored
 events = []
 # This is the menu function
 def menu(events_list):
-    while True:
+    # Loop condition var
+    menu_loop = True
+    # While loop to show the main menu,
+    # an alt method to do this would be to construct an array of options and then enumerate said array
+    # then create a for loop that will print the array
+    while menu_loop == True:
         print("*******************\n",
               "Main Menu\n",
               "*******************\n",
@@ -21,38 +24,23 @@ def menu(events_list):
               "4) Remove Events\n",
               "5) Event Calendar Summary\n",
               "6) Quit")
-        
+        # Prompts user to make a selection from the given menu
         usr_choice = input(" Enter Menu Selection: ")
-
+        # Triggers the create new event function see caladd module (line 174)
         if usr_choice == "1":
-            test_event = caladd.createnew(events)          
-            print("*******\n")
-            print(f"Name: {event.caladd.date}")
-            print(f"Date: {event.caladd.location}")
-            print(f"Capacity: {event.caladd.cap}")
-            print(f"Cost per person: {event.caladd.cost_per}")
-            print(f"Tags: {event.caladd.tags}")
-            print(f"Description: {event.caladd.description()}")
-            print(f"Description: {event.caladd.event_rev()}")
-            print("*******")
+            new_event = createnew(events)
+            eventprint(new_event)
         elif usr_choice == "2":
-            print("This is the View all Function")
+            listall(events)
         elif usr_choice == "3":
             print("This is the search events function")
         elif usr_choice == "4":
-            print("This is the remove events function")
+            remove(events)
         elif usr_choice == "5":
-            cal.cal_sum(events_list)
-            print("This is the summary function")
+            printstats(events_list)
         elif usr_choice == "6":
             print("Goodbye :)")
-            exit()
+            menu_loop = False
         else:
             print("Invalid input! Please, try again!")
-# This is for date verification down the line
-    # if format(event_date) == True:
-    #     print("Date is valid")
-    #     past(event_date, current_date)
-    # else:
-    #     pass
 menu(events)
