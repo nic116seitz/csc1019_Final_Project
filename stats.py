@@ -19,7 +19,8 @@
 #     print("event_rev:", ran_event.event_rev())
 #     event_inc += 1
 #     test.append(ran_event)
-# This function finds the most expsensive event by comparing costs of one event to the current most expensive event
+
+# Function finds the most expensive event
 # This then returns the name of whatever event wins this comparison
 def mostexpensive(events_list):
     most_exp = Event("Empty")

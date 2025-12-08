@@ -7,6 +7,7 @@
 # Class definition for event objects
 import string
 from date_verify import *
+# Class definition for class event
 class Event:
     # Each event object must have date, location, cap, cost_per, tags, and description text
     # Negative values were selected as the 
@@ -49,9 +50,10 @@ def dateadd(event):
             # The function takes the raw date and removes the punctuation turning it into a string of num
             date_temp = "".join(char for char in new_event_date_raw if 
                             char not in string.punctuation)
-            # This looks for the False bool in the return statement of the date_temp if it returns false it prints the error message below
+            # This looks for the False bool in the return statement of the date_temp if it returns false it allows date_verify 
+            # print the error message
             if date_format(date_temp) == False:
-                print("Invalid date")
+                pass
             # If the date_temp passes all the previous checks then the event is overwritten thus breking the loop
             # Another way to do this would be to use False as the place holder value event.date
             else:
@@ -224,5 +226,4 @@ def createnew(event_list):
 # print(f"Description: {test_event.description()}")
 # print(f"Projected Revenue: {test_event.event_rev()}")
 # print("*******")
-
 
